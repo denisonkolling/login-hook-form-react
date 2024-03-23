@@ -3,5 +3,6 @@ export interface IButton {
 	variant: string;
 	type: 'button' | 'submit' | 'reset';
 	text: string;
+  color: string;
 	onClick?: () => void;
 }
