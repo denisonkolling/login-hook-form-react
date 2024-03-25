@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface IButtonProps {
-	height?: string;
+	width?: string;
 	color?: string;
 	font?: string;
 }
@@ -11,7 +11,7 @@ export const ButtonStyled = styled.button<IButtonProps>`
 	outline: none;
 	border: none;
 	border-radius: 5px;
-	width: ${(props) => props.height || '100%'};
+	width: ${(props) => props.width || '100%'};
 	cursor: pointer;
 	background-color: ${(props) => props.color || '#2F9B2C'};
 	color: white;
