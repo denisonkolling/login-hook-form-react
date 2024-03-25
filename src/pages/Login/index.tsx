@@ -1,45 +1,59 @@
-import { Content, Label, LabelError, LabelSignin, Strong, Container } from './styles';
-import { Link } from 'react-router-dom';
-
-
-import Input from '../../components/Input';
+import { Content, Label, LabelSignin, Strong, Container } from './styles';
+import { MdEmail, MdLock } from 'react-icons/md';
+import Input from '../../components/InputHookForm';
 import Button from '../../components/Button';
-import { ChangeEvent } from 'react';
+import { IFormData } from './types';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+	.object({ 
+		email: yup.string().email('Please enter a valid email address').required('Email is required.'),
+		password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required.'),
+	})
+	.required();
 
 const Login = () => {
 
+	const { control, handleSubmit, formState: { errors } } = useForm<IFormData>({ resolver: yupResolver(schema), mode: 'onChange' });
+
+	const onSubmit = (formData: IFormData) => {
+		console.log(formData.email, formData.password);
+	};
 
 	return (
 		<Container>
 			<Content>
-				<Label style={{ fontSize: '30px' }}>
-				</Label>
+				<Label style={{ fontSize: '30px' }}> Trail Routes </Label>
 				<LabelSignin>
 					Welcome back.
 					<br />
 					Sign in and start exploring.
 				</LabelSignin>
-				<Input
-					type="email"
-					// value={email}
-					placeholder="Email" value={''} onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-						throw new Error('Function not implemented.');
-					} }					// onChange={(e) => [setEmail(e.target.value), setMessage('')]}
-				/>
-				<Input
-					type="password"
-					// value={password}
-					placeholder="Password" value={''} onChange={function (e: ChangeEvent<HTMLInputElement>): void {
-						throw new Error('Function not implemented.');
-					} }					// onChange={(e) => [setPassword(e.target.value), setMessage('')]}
-				/>
-				<LabelError>Message</LabelError>
-				<Button text="Sign In" color="#2F9B2C" title={'Login'} variant={'submitt'} type={'button'}></Button>
+
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<Input
+						leftIcon={<MdEmail />}
+						placeholder="E-mail"
+						name="email"
+						control={control}
+						errorMessage={errors?.email?.message}
+					/>
+					<Input
+						leftIcon={<MdLock />}
+						type="password"
+						placeholder="Senha"
+						name="password"
+						control={control}
+						errorMessage={errors?.password?.message}
+					/>
+					<Button text="Sign In" type="submit"></Button>
+				</form>
+
 				<LabelSignin>
 					Don't have an account?
-					<Strong>
-						{/* <Link to="/signup">&nbsp;Sign up</Link> */}
-					</Strong>
+					<Strong>&nbsp;Sign up</Strong>
 				</LabelSignin>
 			</Content>
 		</Container>
