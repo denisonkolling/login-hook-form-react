@@ -9,14 +9,14 @@ import * as yup from 'yup';
 
 const schema = yup
 	.object({ 
-		email: yup.string().email('Please enter a valid email address').required('Email is required.'),
-		password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required.'),
+		email: yup.string().email('Please enter a valid email address').required('Email is required'),
+		password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
 	})
 	.required();
 
 const Login = () => {
 
-	const { control, handleSubmit, formState: { errors } } = useForm<IFormData>({ resolver: yupResolver(schema), mode: 'onChange' });
+	const { control, handleSubmit, formState: { errors, isValid } } = useForm<IFormData>({ resolver: yupResolver(schema), mode: 'onChange' });
 
 	const onSubmit = (formData: IFormData) => {
 		console.log(formData.email, formData.password);
@@ -25,17 +25,17 @@ const Login = () => {
 	return (
 		<Container>
 			<Content>
-				<Label style={{ fontSize: '30px' }}> Trail Routes </Label>
+				<Label style={{ fontSize: '30px' }}>Login</Label>
 				<LabelSignin>
-					Welcome back.
+					Welcome back
 					<br />
-					Sign in and start exploring.
+					Login and start exploring
 				</LabelSignin>
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						leftIcon={<MdEmail />}
-						placeholder="E-mail"
+						placeholder="Email"
 						name="email"
 						control={control}
 						errorMessage={errors?.email?.message}
@@ -43,17 +43,17 @@ const Login = () => {
 					<Input
 						leftIcon={<MdLock />}
 						type="password"
-						placeholder="Senha"
+						placeholder="Password"
 						name="password"
 						control={control}
 						errorMessage={errors?.password?.message}
 					/>
-					<Button text="Sign In" type="submit"></Button>
+					<Button text="Login" type="submit" disabled={isValid}></Button>
 				</form>
 
 				<LabelSignin>
 					Don't have an account?
-					<Strong>&nbsp;Sign up</Strong>
+					<Strong>&nbsp;Register</Strong>
 				</LabelSignin>
 			</Content>
 		</Container>

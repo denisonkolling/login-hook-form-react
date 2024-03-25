@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface IButtonProps {
 	width?: string;
 	color?: string;
 	font?: string;
+	disabledProp?: boolean;
 }
 
 export const ButtonStyled = styled.button<IButtonProps>`
@@ -24,4 +25,17 @@ export const ButtonStyled = styled.button<IButtonProps>`
 	&:hover {
 		opacity: 0.75;
 	}
+
+	${({ disabledProp }) => !disabledProp && css`
+
+			&:disabled {
+				pointer-events: none;
+				cursor: not-allowed;
+				opacity: 0.65;
+				filter: alpha(opacity=65);
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+
+		`}
 `;
