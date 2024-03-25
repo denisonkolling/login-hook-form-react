@@ -38,7 +38,7 @@ const Login = () => {
 				<LabelSignin>
 					Don't have an account?
 					<Strong>
-						<Link to="/signup">&nbsp;Sign up</Link>
+						{/* <Link to="/signup">&nbsp;Sign up</Link> */}
 					</Strong>
 				</LabelSignin>
 			</Content>

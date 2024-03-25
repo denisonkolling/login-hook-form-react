@@ -19,7 +19,7 @@ export const ButtonStyled = styled.button<IButtonProps>`
 	font-size: 16px;
 	max-width: 350px;
 	letter-spacing: 1px;
-	font-family: ${(props) => props.theme.fonts.regular};
+	font-family: Inter, sans-serif;
 
 	&:hover {
 		opacity: 0.75;

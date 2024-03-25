@@ -15,14 +15,14 @@ export const Content = styled.div`
 `;
 
 export const Label = styled.label`
-	font-family: ${(props) => props.theme.fonts.regular};
+	font-family: Inter, sans-serif;
 	font-size: 18px;
 	font-weight: 600;
 	color: #676767;
 `;
 
 export const Strong = styled.strong`
-	font-family: ${(props) => props.theme.fonts.regular};
+	font-family: Inter, sans-serif;
 	cursor: pointer;
 
 	a {
@@ -32,7 +32,7 @@ export const Strong = styled.strong`
 `;
 
 export const LabelSignin = styled.label`
-	font-family: ${(props) => props.theme.fonts.regular};
+	font-family: Inter, sans-serif;
 	font-size: 16px;
 	color: #676767;
 	text-align: center;
@@ -41,7 +41,7 @@ export const LabelSignin = styled.label`
 `;
 
 export const LabelError = styled.label`
-	font-family: ${(props) => props.theme.fonts.regular};
+	font-family: Inter, sans-serif;
 	font-size: 14px;
 	color: red;
 `;
@@ -51,7 +51,7 @@ interface IContainerProps {
 }
 
 export const Container = styled.div<IContainerProps>`
-	font-family: ${(props) => props.theme.fonts.regular};
+	font-family: Inter, sans-serif;
 	display: flex;
 	align-items: center;
 	justify-content: center;
